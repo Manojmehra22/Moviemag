@@ -21,7 +21,7 @@ function MovieApp() {
         }
       );
       setGenres(response.data.genres);
-      console.log(response.data.genres);
+      // console.log(response.data.genres);
     };
     fetchGenres();
   }, []);
@@ -99,7 +99,7 @@ function MovieApp() {
         <select id="genre" value={selectedGenre} onChange={handleGenreChange}>
           <option value="">All Genres</option>
           {genres.map((genre) => {
-            <option key={genre.id} value={genre.id}>
+            return <option key={genre.id} value={genre.id} style={{ color: "black" }}>
               {genre.name}
             </option>;
           })}

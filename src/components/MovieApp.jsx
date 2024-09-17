@@ -75,46 +75,52 @@ function MovieApp() {
   };
 
   return (
-    <div>
-      <h1>MovieMag</h1>
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Search Movies..."
-          className="search-input"
-          value={searchQuery}
-          onChange={handleSearchChange}
-        />
-        <button className="search-button" onClick={handleSearchSubmit}>
-          <AiOutlineSearch />
-        </button>
-      </div>
-      <div className="filters">
-        <label htmlFor="sort-by">Sort By:</label>
-        <select id="sort-by" value={sortBy} onChange={handleSortChange}>
-          <option value="popularity.desc">Popularity Descending</option>
-          <option value="popularity.asc">Popularity Ascending</option>
-          <option value="vote_average.asc">Rating Descending</option>
-          <option value="vote_average.asc">Rating Ascending</option>
-          <option value="release_date.desc">Release Date Descending</option>
-          <option value="release_date.asc">Release Date Ascending</option>
-        </select>
+    <>
+      <div className="breakpoint">
+        <h1>MovieMag</h1>
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Search Movies..."
+            className="search-input"
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
+          <button className="search-button" onClick={handleSearchSubmit}>
+            <AiOutlineSearch />
+          </button>
+        </div>
+        <div className="filters">
+          <label htmlFor="sort-by" className="sort-heading">
+            Sort By:
+          </label>
+          <select id="sort-by" value={sortBy} onChange={handleSortChange}>
+            <option value="popularity.desc">Popularity Descending</option>
+            <option value="popularity.asc">Popularity Ascending</option>
+            <option value="vote_average.asc">Rating Descending</option>
+            <option value="vote_average.asc">Rating Ascending</option>
+            <option value="release_date.desc">Release Date Descending</option>
+            <option value="release_date.asc">Release Date Ascending</option>
+          </select>
 
-        <label htmlFor="genre">Genre:</label>
-        <select id="genre" value={selectedGenre} onChange={handleGenreChange}>
-          <option value="">All Genres</option>
-          {genres.map((genre) => {
-            return (
-              <option
-                key={genre.id}
-                value={genre.id}
-                style={{ color: "black" }}
-              >
-                {genre.name}
-              </option>
-            );
-          })}
-        </select>
+          <label htmlFor="genre" className="genreheading">
+            Genre:
+          </label>
+          <select id="genre" value={selectedGenre} onChange={handleGenreChange}>
+            <option value="">All Genres</option>
+            {genres.map((genre) => {
+              return (
+                <option
+                  key={genre.id}
+                  value={genre.id}
+                  style={{ color: "black" }}
+                >
+                  {genre.name}
+                </option>
+              );
+            })}
+          </select>
+        </div>
       </div>
 
       <div className="movie-wrapper">
@@ -144,7 +150,7 @@ function MovieApp() {
           );
         })}
       </div>
-    </div>
+    </>
   );
 }
 

@@ -9,6 +9,7 @@ function MovieApp() {
   const [sortBy, setSortBy] = useState("popularity.desc");
   const [genres, setGenres] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState("");
+  const [expandedMovieId, setExpandedMovieId] = useState(null);
 
   useEffect(() => {
     const fetchGenres = async () => {
@@ -69,6 +70,10 @@ function MovieApp() {
     setSelectedGenre(event.target.value);
   };
 
+  const toggleDescription = (movieId) => {
+    setExpandedMovieId(expandedMovieId === movieId ? null : movieId);
+  };
+
   return (
     <div>
       <h1>MovieMag</h1>
@@ -99,11 +104,45 @@ function MovieApp() {
         <select id="genre" value={selectedGenre} onChange={handleGenreChange}>
           <option value="">All Genres</option>
           {genres.map((genre) => {
-            return <option key={genre.id} value={genre.id} style={{ color: "black" }}>
-              {genre.name}
-            </option>;
+            return (
+              <option
+                key={genre.id}
+                value={genre.id}
+                style={{ color: "black" }}
+              >
+                {genre.name}
+              </option>
+            );
           })}
         </select>
+      </div>
+
+      <div className="movie-wrapper">
+        {movies.map((movie) => {
+          return (
+            <div key={movie.id} className="movie">
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+              />
+              <h2>{movie.title}</h2>
+              <p className="rating">Rating:{movie.vote_average}</p>
+              {expandedMovieId === movie.id ? (
+                <p>{movie.overview}</p>
+              ) : (
+                <p>{movie.overview.substring(0, 150)}...</p>
+              )}
+              <button
+                onClick={() => {
+                  toggleDescription(movie.id);
+                }}
+                className="read-more"
+              >
+                {expandedMovieId === movie.id ? "Show Less" : "Read More"}
+              </button>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

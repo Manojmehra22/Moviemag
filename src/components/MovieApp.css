@@ -206,7 +206,7 @@ h1 {
     width: 80%;
     padding-right: 160px;
     padding-left: 160px;
-    gap: 20px;
+    gap: 10px;
     /* margin-left: 190px; */
   }
   .movie {
@@ -222,5 +222,38 @@ h1 {
 
     margin-bottom: 10px;
     box-shadow: 0 6px 15px -3px rgb(0, 0, 0, 0.1);
+  }
+}
+@media screen and (min-width: 350px) {
+  .breakpoint {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 350px;
+    gap: 15px;
+    font-size: 15px;
+  }
+
+  .movie-wrapper {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    flex-wrap: wrap;
+
+    width: 80%;
+    padding-right: 200px;
+    padding-left: 200px;
+    gap: 10px;
+    /* margin-left: 190px; */
+  }
+  .filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 60px;
+    gap: 15px;
+    font-size: 15px;
   }
 }
